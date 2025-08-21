@@ -98,6 +98,28 @@
                             <h5><i class="fas fa-info-circle me-2"></i> Informasi Biaya Pendaftaran</h5>
                             <p>Biaya pendaftaran untuk program studi {{ $pendaftar->prodi->nama ?? 'yang dipilih' }} adalah:</p>
                             <h4 class="text-primary mt-3 mb-3">Rp {{ number_format($biaya, 0, ',', '.') }}</h4>
+                            <hr>
+                            <h6 class="mt-3">INFO BIAYA:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>TEKNIK:</strong>
+                                    <ul class="mb-3">
+                                        <li>Pendaftaran: Rp 250,000</li>
+                                        <li>Daftar Ulang: Rp 715,000</li>
+                                        <li>PKKMB: Rp 450,000</li>
+                                        <li><strong>Total: Rp 1,415,000</strong></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>NON-TEKNIK:</strong>
+                                    <ul class="mb-3">
+                                        <li>Pendaftaran: Rp 250,000</li>
+                                        <li>Daftar Ulang: Rp 665,000</li>
+                                        <li>PKKMB: Rp 450,000</li>
+                                        <li><strong>Total: Rp 1,365,000</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <p class="mb-0">Silakan lakukan pembayaran melalui metode di bawah ini.</p>
                         </div>
                         
@@ -261,7 +283,7 @@
                                         @error('bukti_bayar')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                        <div class="form-text">Format: JPG, PNG, atau PDF (Maks. 2MB)</div>
+                                        <div class="form-text">Format: JPG, PNG, atau PDF (Maks. 5MB)</div>
                                     </div>
                                     
                                     {{-- UPDATE - Container untuk QRIS --}}

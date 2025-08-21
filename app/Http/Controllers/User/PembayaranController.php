@@ -90,7 +90,7 @@ class PembayaranController extends Controller
         $validatedData = $request->validate([
             'metode_pembayaran' => 'required|in:Transfer Bank,Cash,QRIS',
             'tanggal_bayar' => 'required|date',
-            'bukti_bayar' => 'required_if:metode_pembayaran,Transfer Bank,QR Code|file|mimes:jpeg,png,jpg,pdf|max:2048',
+            'bukti_bayar' => 'required_if:metode_pembayaran,Transfer Bank,QR Code|file|mimes:jpeg,png,jpg,pdf|max:5120',
         ]);
         
         // Check if transaction already exists
