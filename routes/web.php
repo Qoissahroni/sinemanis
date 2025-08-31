@@ -15,6 +15,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use App\Http\Controllers\User\FormulirController;
 use App\Http\Controllers\User\PembayaranController;
+use App\Http\Controllers\User\PembayaranSelisihController;
 use App\Http\Controllers\User\LaporanController as UserLaporanController;
 use App\Http\Controllers\User\ProfileController as UserProfileController;
 
@@ -99,6 +100,8 @@ Route::middleware(['auth'])
         // Pembayaran
         Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
         Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
+        Route::get('/pembayaran/selisih', [PembayaranSelisihController::class, 'index'])->name('pembayaran-selisih.index');
+        Route::post('/pembayaran/selisih', [PembayaranSelisihController::class, 'store'])->name('pembayaran-selisih.store');
         
         // Laporan
         Route::get('/laporan', [UserLaporanController::class, 'index'])->name('laporan.index');

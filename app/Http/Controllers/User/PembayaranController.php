@@ -32,9 +32,16 @@ class PembayaranController extends Controller
                 ->with('error', 'Anda harus mengisi formulir pendaftaran terlebih dahulu.');
         }
         
-        // Get transaksi if exists
-        $transaksi = Transaksi::where('pendaftar_id', $pendaftar->id)->first();
-        
+        // Get transaksi pendaftaran jika ada
+        $transaksi = Transaksi::where('pendaftar_id', $pendaftar->id)
+            ->whereNull('keterangan')
+            ->first();
+
+        // Ambil transaksi selisih prodi jika tersedia
+        $selisihTransaksi = Transaksi::where('pendaftar_id', $pendaftar->id)
+            ->where('keterangan', 'Pembayaran selisih biaya pergantian prodi')
+            ->first();
+
         // Get biaya pendaftaran from prodi
         $biaya = $pendaftar->prodi->biaya ?? 0;
         
@@ -49,7 +56,7 @@ class PembayaranController extends Controller
             }
         }
         
-        return view('user.pembayaran.index', compact('pendaftar', 'transaksi', 'biaya', 'qrCodeUrl'));
+         return view('user.pembayaran.index', compact('pendaftar', 'transaksi', 'selisihTransaksi', 'biaya', 'qrCodeUrl'));
     }
     
     // Method untuk generate QR Code

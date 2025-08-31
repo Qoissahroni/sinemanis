@@ -179,6 +179,20 @@
             border-color: #e67012;
         }
         
+        .btn-danger-custom {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-danger-custom:hover {
+            background: #bb2d3b;
+            border-color: #bb2d3b;
+        }
+        
         .timeline {
             position: relative;
             padding-left: 30px;

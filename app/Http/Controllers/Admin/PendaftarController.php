@@ -193,12 +193,12 @@ public function destroy(string $id)
         // Create new transaction if there's additional cost
         if ($pendaftar->selisih_biaya_prodi > 0) {
             $nomorTransaksi = 'TRX-SELISIH-' . date('Ymd') . '-' . str_pad($pendaftar->id, 4, '0', STR_PAD_LEFT);
-            
+
             \App\Models\Transaksi::create([
                 'pendaftar_id' => $pendaftar->id,
                 'nomor_transaksi' => $nomorTransaksi,
                 'jumlah' => $pendaftar->selisih_biaya_prodi,
-                'tanggal_bayar' => now(),
+                'tanggal_bayar' => null,
                 'metode_pembayaran' => 'Transfer Bank',
                 'status' => 'pending',
                 'keterangan' => 'Pembayaran selisih biaya pergantian prodi'

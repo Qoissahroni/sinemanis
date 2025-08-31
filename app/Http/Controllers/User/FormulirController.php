@@ -17,6 +17,13 @@ class FormulirController extends Controller
     {
         $user = Auth::user();
         $pendaftar = Pendaftar::with(['prodi', 'prodiBaru'])->where('user_id', $user->id)->first();
+
+        $transaksiSelisih = null;
+        if ($pendaftar) {
+            $transaksiSelisih = \App\Models\Transaksi::where('pendaftar_id', $pendaftar->id)
+                ->where('keterangan', 'Pembayaran selisih biaya pergantian prodi')
+                ->first();
+        }
         $prodis = Prodi::select('id','kode','nama','jenjang','akreditasi','biaya','kuota')
         ->selectRaw("(kuota - COALESCE((SELECT COUNT(*) FROM pendaftars WHERE prodi_id = prodis.id), 0)) AS kuota_tersisa")
         ->orderBy('nama')
@@ -28,7 +35,7 @@ class FormulirController extends Controller
             $isSubmitted = true;
         }
         
-        return view('user.formulir.index', compact('pendaftar', 'prodis', 'isSubmitted'));
+        return view('user.formulir.index', compact('pendaftar', 'prodis', 'isSubmitted', 'transaksiSelisih'));
     }
     
     public function store(Request $request)

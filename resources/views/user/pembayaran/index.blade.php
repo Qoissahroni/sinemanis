@@ -91,6 +91,83 @@
                         </div>
                     </div>
                 </div>
+                
+                @if($selisihTransaksi && $selisihTransaksi->metode_pembayaran)
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Detail Pembayaran Selisih Prodi</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <p class="fw-bold mb-1">Nomor Transaksi:</p>
+                                        <p>{{ $selisihTransaksi->nomor_transaksi }}</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="fw-bold mb-1">Tanggal Pembayaran:</p>
+                                        <p>{{ $selisihTransaksi->tanggal_bayar->format('d M Y') }}</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="fw-bold mb-1">Metode Pembayaran:</p>
+                                        <p>{{ $selisihTransaksi->metode_pembayaran }}</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="fw-bold mb-1">Jumlah:</p>
+                                        <p class="text-primary fw-bold">Rp {{ number_format($selisihTransaksi->jumlah, 0, ',', '.') }}</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="fw-bold mb-1">Status:</p>
+                                        @if($selisihTransaksi->status == 'pending')
+                                            <span class="badge bg-warning">Menunggu Konfirmasi</span>
+                                        @elseif($selisihTransaksi->status == 'success')
+                                            <span class="badge bg-success">Pembayaran Berhasil</span>
+                                        @elseif($selisihTransaksi->status == 'failed')
+                                            <span class="badge bg-danger">Pembayaran Gagal</span>
+                                        @endif
+                                    </div>
+                                    @if(in_array($selisihTransaksi->metode_pembayaran, ['Transfer Bank', 'QRIS']) && $selisihTransaksi->bukti_bayar_url)
+                                        <div class="mb-3">
+                                            <p class="fw-bold mb-1">Bukti Pembayaran:</p>
+                                            <a href="{{ asset('storage/' . $selisihTransaksi->bukti_bayar_url) }}" target="_blank" class="btn btn-sm btn-primary-custom">
+                                                <i class="fas fa-file-image me-1"></i> Lihat Bukti Pembayaran
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Status Pembayaran Selisih</h5>
+                                </div>
+                                <div class="card-body text-center">
+                                    @if($selisihTransaksi->status == 'pending')
+                                        <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:80px;height:80px">
+                                            <i class="fas fa-clock fa-2x"></i>
+                                        </div>
+                                        <h5>Menunggu Konfirmasi</h5>
+                                        <p class="text-muted">Pembayaran selisih Anda sedang diverifikasi oleh admin.</p>
+                                    @elseif($selisihTransaksi->status == 'success')
+                                        <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:80px;height:80px">
+                                            <i class="fas fa-check-circle fa-2x"></i>
+                                        </div>
+                                        <h5>Pembayaran Berhasil</h5>
+                                        <p class="text-muted">Pembayaran selisih telah diverifikasi.</p>
+                                    @elseif($selisihTransaksi->status == 'failed')
+                                        <div class="bg-danger text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:80px;height:80px">
+                                            <i class="fas fa-times-circle fa-2x"></i>
+                                        </div>
+                                        <h5>Pembayaran Gagal</h5>
+                                        <p class="text-muted">Pembayaran selisih tidak diverifikasi.</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @else
                 <div class="row">
                     <div class="col-md-7">

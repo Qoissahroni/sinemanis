@@ -62,7 +62,7 @@
                                 <td>{{ $transaksi->nomor_transaksi }}</td>
                                 <td>{{ $transaksi->pendaftar->name ?? 'N/A' }}</td>
                                 <td>Rp {{ number_format($transaksi->jumlah, 0, ',', '.') }}</td>
-                                <td>{{ $transaksi->tanggal_bayar->format('d M Y H:i') }}</td>
+                                <td>{{ optional($transaksi->tanggal_bayar)->format('d M Y H:i') ?? '-' }}</td>
                                 <td>
                                     @if($transaksi->status == 'pending')
                                         <span class="badge bg-warning">Menunggu</span>

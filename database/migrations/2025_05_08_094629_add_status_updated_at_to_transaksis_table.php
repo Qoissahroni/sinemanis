@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('transaksis', function (Blueprint $table) {
-            $table->timestamp('status_updated_at')->nullable()->after('status');
-        });
+        if (!Schema::hasColumn('transaksis', 'status_updated_at')) {
+            Schema::table('transaksis', function (Blueprint $table) {
+                $table->timestamp('status_updated_at')->nullable()->after('status');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('transaksis', function (Blueprint $table) {
-            $table->dropColumn('status_updated_at');
-        });
+        if (Schema::hasColumn('transaksis', 'status_updated_at')) {
+            Schema::table('transaksis', function (Blueprint $table) {
+                $table->dropColumn('status_updated_at');
+            });
+        }
     }
 };
