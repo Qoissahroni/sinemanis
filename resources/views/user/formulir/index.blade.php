@@ -21,6 +21,11 @@
                     <a href="{{ route('user.laporan.index') }}" class="btn btn-accent-custom me-2">
                         <i class="fas fa-print me-1"></i> Cetak Bukti Pendaftaran
                     </a>
+                    @if($pendaftar->selisih_biaya_prodi > 0 && $pendaftar->status_ganti_prodi == 'approved' && $transaksiSelisih && $transaksiSelisih->status == 'pending')
+                    <a href="{{ route('user.pembayaran-selisih.index') }}" class="btn btn-danger-custom">
+                        <i class="fas fa-wallet me-1"></i> Bayar Selisih Prodi
+                    </a>
+                    @endif
                 </div>
             </div>
 
