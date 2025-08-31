@@ -199,7 +199,7 @@ public function destroy(string $id)
                 'nomor_transaksi' => $nomorTransaksi,
                 'jumlah' => $pendaftar->selisih_biaya_prodi,
                 'tanggal_bayar' => null,
-                'metode_pembayaran' => 'Transfer Bank',
+                'metode_pembayaran' => null,
                 'status' => 'pending',
                 'keterangan' => 'Pembayaran selisih biaya pergantian prodi'
             ]);

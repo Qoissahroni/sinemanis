@@ -24,7 +24,7 @@
                             </div>
                             <div class="mb-3">
                                 <p class="fw-bold mb-1">Tanggal Pembayaran:</p>
-                                <p>{{ $transaksi->tanggal_bayar->format('d M Y') }}</p>
+                                <p>{{ optional($transaksi->tanggal_bayar)->format('d M Y') ?? '-' }}</p>
                             </div>
                             <div class="mb-3">
                                 <p class="fw-bold mb-1">Metode Pembayaran:</p>

@@ -409,7 +409,7 @@
                                 </tr>
                                 <tr>
                                     <th>Tanggal Pembayaran</th>
-                                    <td>{{ $pendaftar->transaksi->tanggal_bayar->format('d M Y') }}</td>
+                                    <td>{{ optional($pendaftar->transaksi->tanggal_bayar)->format('d M Y') ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status Pembayaran</th>

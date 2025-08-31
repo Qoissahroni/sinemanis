@@ -377,7 +377,7 @@
                             </tr>
                             <tr>
                                 <td class="text-muted ps-0">Tanggal Bayar</td>
-                                <td class="fw-bold pe-0">{{ $pendaftar->transaksi->tanggal_bayar->format('d M Y H:i') }}</td>
+                                <td class="fw-bold pe-0">{{ optional($pendaftar->transaksi->tanggal_bayar)->format('d M Y H:i') ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <td class="text-muted ps-0">Status</td>
