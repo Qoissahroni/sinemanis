@@ -169,7 +169,11 @@
               </div>
               @else
               <div class="alert alert-secondary mt-4">
-                  <i class="fas fa-info-circle me-2"></i>Anda sudah menggunakan kesempatan pergantian program studi.
+                @if($pendaftar->status_ganti_prodi == 'approved' && $pendaftar->selisih_biaya_prodi > 0 && $transaksiSelisih && $transaksiSelisih->status == 'pending')
+                <i class="fas fa-info-circle me-2"></i>Pengajuan pergantian program studi Anda telah disetujui. Silakan melakukan pembayaran selisih biaya.
+                @else
+                <i class="fas fa-info-circle me-2"></i>Anda sudah menggunakan kesempatan pergantian program studi.
+            @endif
               </div>
               @endif
             @else
