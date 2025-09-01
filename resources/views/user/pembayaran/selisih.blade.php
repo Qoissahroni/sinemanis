@@ -73,7 +73,6 @@
                             <select class="form-select" id="metode_pembayaran" name="metode_pembayaran" required>
                                 <option value="">Pilih Metode</option>
                                 <option value="Transfer Bank">Transfer Bank</option>
-                                <option value="QRIS">QRIS</option>
                                 <option value="Cash">Cash</option>
                             </select>
                         </div>
@@ -84,7 +83,7 @@
                         <div class="mb-3">
                             <label for="bukti_bayar" class="form-label">Bukti Pembayaran</label>
                             <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar">
-                            <div class="form-text">Wajib diisi untuk Transfer Bank atau QRIS.</div>
+                            <div class="form-text">Wajib diisi untuk Transfer Bank.</div>
                         </div>
                         <button type="submit" class="btn btn-primary-custom">Kirim Konfirmasi</button>
                     </form>
